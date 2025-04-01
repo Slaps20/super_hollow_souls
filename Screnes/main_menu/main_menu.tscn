@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqbshbnrd1tob"]
+
+[ext_resource type="Texture2D" uid="uid://chf7fecm1bdqo" path="res://Art/main_meun.png" id="1_0toyg"]
+[ext_resource type="Script" uid="uid://dau6mh26curkc" path="res://Screnes/main_menu/main_menu.gd" id="1_n7y6p"]
+
+[node name="main_menu" type="Node2D"]
+script = ExtResource("1_n7y6p")
+
+[node name="MainMeun" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("1_0toyg")
+
+[node name="Load" type="Button" parent="."]
+offset_left = 897.0
+offset_top = 527.0
+offset_right = 943.0
+offset_bottom = 558.0
+scale = Vector2(3, 3)
+text = "Load
+"
+
+[node name="New Game" type="Button" parent="."]
+offset_left = 829.0
+offset_top = 700.0
+offset_right = 922.0
+offset_bottom = 731.0
+scale = Vector2(3, 3)
+text = "New Game
+"
+
+[node name="Quit" type="Button" parent="."]
+offset_left = 901.0
+offset_top = 891.0
+offset_right = 943.0
+offset_bottom = 922.0
+scale = Vector2(3, 3)
+text = "Quit"
+
+[connection signal="pressed" from="Load" to="." method="_on_load_pressed"]
+[connection signal="pressed" from="New Game" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

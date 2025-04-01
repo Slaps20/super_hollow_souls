@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ryuqf3bu5tq2"]
+
+[ext_resource type="Script" uid="uid://dkjrosscccqab" path="res://UI_COMP/Hp/Hp.gd" id="1_s0xat"]
+
+[node name="Lable" type="Label"]
+offset_left = 18.0
+offset_top = 12.0
+offset_right = 58.0
+offset_bottom = 35.0
+scale = Vector2(1.48, 1.68)
+script = ExtResource("1_s0xat")

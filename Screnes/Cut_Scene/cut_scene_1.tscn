@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://clvjdkr18ph7n"]
+
+[ext_resource type="Texture2D" uid="uid://mmg1dpopdww2" path="res://Art/begaining.png" id="1_1b5g5"]
+[ext_resource type="Script" uid="uid://d0qh8qsvs28nt" path="res://Screnes/Cut_Scene/cut_scene_1.gd" id="1_6q7qd"]
+[ext_resource type="PackedScene" uid="uid://d352hiuxeijx6" path="res://Enties/Player/player.tscn" id="3_r2k77"]
+[ext_resource type="PackedScene" uid="uid://b7fg2qilwcty3" path="res://Objects/inv_floor.tscn" id="4_gvwom"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gvwom"]
+size = Vector2(322, 161)
+
+[node name="cut_scene_1" type="Node2D"]
+script = ExtResource("1_6q7qd")
+
+[node name="Begaining" type="Sprite2D" parent="."]
+position = Vector2(960, 536)
+texture = ExtResource("1_1b5g5")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = -2088.0
+offset_top = 264.0
+offset_right = 1567.0
+offset_bottom = 391.0
+scale = Vector2(1.6644, 1.78742)
+text = "Staranger I know this is is starage even to you, and honstly your not great for the job, but your the only one i could reach. 
+I mean I could save the time and mana to reach someone with maybe  little more training, but time is up the up most imporatance.
+ I mean if we end up swasting any time, the problem of the cloning craigs may just drain my world of it resoruces. 
+They are truely horrfic, consumming matter and duplicing themselvels.
+ Now quick, come through this portal."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Next" type="Button" parent="CanvasLayer"]
+offset_left = 1720.0
+offset_top = 936.0
+offset_right = 1765.0
+offset_bottom = 967.0
+scale = Vector2(3, 3)
+text = "Next
+"
+
+[node name="Player" parent="." instance=ExtResource("3_r2k77")]
+position = Vector2(160, 760)
+scale = Vector2(0.5, 0.5)
+
+[node name="inv_floor" parent="." instance=ExtResource("4_gvwom")]
+position = Vector2(56, 904)
+
+[node name="player_reset" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_reset"]
+position = Vector2(184, 816.5)
+shape = SubResource("RectangleShape2D_gvwom")
+
+[connection signal="pressed" from="CanvasLayer/Next" to="." method="_on_next_pressed"]
+[connection signal="body_entered" from="player_reset" to="." method="_on_player_reset_body_entered"]
