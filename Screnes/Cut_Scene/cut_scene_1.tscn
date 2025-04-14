@@ -41,7 +41,7 @@ text = "Next
 "
 
 [node name="Player" parent="." instance=ExtResource("3_r2k77")]
-position = Vector2(160, 760)
+position = Vector2(120, 704)
 scale = Vector2(0.5, 0.5)
 
 [node name="inv_floor" parent="." instance=ExtResource("4_gvwom")]
@@ -50,7 +50,7 @@ position = Vector2(56, 904)
 [node name="player_reset" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player_reset"]
-position = Vector2(184, 816.5)
+position = Vector2(208, 816)
 shape = SubResource("RectangleShape2D_gvwom")
 
 [connection signal="pressed" from="CanvasLayer/Next" to="." method="_on_next_pressed"]

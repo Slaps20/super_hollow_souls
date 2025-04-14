@@ -1,6 +1,7 @@
 class_name Player 
 extends CharacterBody2D
 
+@onready var a_tree: AnimationTree = $AnimationTree
 
 const SPEED = 700.0
 const JUMP_VELOCITY = -1000.0
@@ -9,11 +10,13 @@ var save_path = "user://variable.save"
 var max_health = 1
 var health = 1
 var lives = 10
+var can_move: bool = true
+var right: bool = true
 
 func _ready() -> void:
 	load_data()
 	add_to_group("player")
-	get_node("AnimatedSprite2D").play("Idle")
+	#get_node("AnimatedSprite2D").play("Idle")
 	
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -34,16 +37,33 @@ func _physics_process(delta: float) -> void:
 	
 	var direction:= Input.get_axis("left", "right")
 	if direction:
-		get_node("AnimatedSprite2D").play("Walk")
 		velocity.x = direction * SPEED
 	else:
-		get_node("AnimatedSprite2D").play("Idle")
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		
-	if direction < 0:
-		get_node("AnimatedSprite2D").flip_h = true
-	if direction > 0:
-		get_node("AnimatedSprite2D").flip_h = false
+	#handles animation
+	if Input.is_action_just_pressed("right"):
+		right = true
+	elif Input.is_action_just_pressed("left"):
+		right = false
+	else:
+		pass
+	
+	if right:
+		scale = Vector2(1.0, 1.0)
+		scale.x = 1
+		#position = Vector2(0.0, 0.0)
+	else:
+		scale = Vector2(-1.0, 1.0)
+		scale.x = -1
+		#position = Vector2(0.0, 0.0)
+		
+	if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
+		a_tree["parameters/conditions/is_walking"] = true
+		a_tree["parameters/conditions/is_idle"] = false
+	else:
+		a_tree["parameters/conditions/is_walking"] = false
+		a_tree["parameters/conditions/is_idle"] = true
 		
 	move_and_slide()
 	
@@ -91,3 +111,9 @@ func new_player():
 	health = 5
 	max_health = 5
 	save()
+
+func cant_movement():
+	can_move = false
+
+func can_movement():
+	can_move = true
